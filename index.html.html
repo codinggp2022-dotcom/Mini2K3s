@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project: Thiết Bị AI Chăm Sóc Cây - Tin Học Lớp 3</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tải font chữ thân thiện cho học sinh tiểu học (Quicksand & Nunito) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Tải FontAwesome cho các biểu tượng sinh động -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0fdf4; /* Xanh lá nhạt dịu mắt */
+            background-image: radial-gradient(#bbf7d0 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            color: #1e293b;
+        }
+        h1, h2, h3, .font-title {
+            font-family: 'Quicksand', sans-serif;
+        }
+        /* Hiệu ứng nảy nhẹ khi di chuột */
+        .kid-card {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        }
+        .kid-card:hover {
+            transform: translateY(-4px);
+        }
+        /* Hiệu ứng thanh cuộn mượt */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Tùy chỉnh thanh cuộn cho bảng trên điện thoại */
+        .table-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #86efac;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Thanh điều hướng nhanh phía trên -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-4 border-emerald-400 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl sm:text-3xl animate-bounce">🌱</span>
+                <span class="font-title font-extrabold text-emerald-700 text-base sm:text-lg">TIN HỌC KHỐI 3</span>
+            </div>
+            <div class="flex items-center gap-1.5 sm:gap-3 text-xs sm:text-sm font-bold overflow-x-auto py-1">
+                <a href="#boi-canh" class="px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition whitespace-nowrap">📖 Bối cảnh</a>
+                <a href="#muc-tieu" class="px-3 py-1.5 rounded-full bg-sky-100 text-sky-800 hover:bg-sky-200 transition whitespace-nowrap">🎯 Mục tiêu</a>
+                <a href="#hanh-trinh" class="px-3 py-1.5 rounded-full bg-amber-100 text-amber-800 hover:bg-amber-200 transition whitespace-nowrap">🚀 Nhiệm vụ 4 tiết</a>
+                <a href="#danh-gia" class="px-3 py-1.5 rounded-full bg-purple-100 text-purple-800 hover:bg-purple-200 transition whitespace-nowrap">⭐ Tiêu chí đánh giá</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Phần Tiêu đề chính (Hero Banner) -->
+    <header class="max-w-5xl mx-auto px-4 pt-6 sm:pt-8 pb-4">
+        <div class="bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 rounded-3xl p-6 sm:p-8 text-white shadow-lg border-4 border-white relative overflow-hidden">
+            <!-- Trang trí nền -->
+            <div class="absolute -right-6 -top-6 text-7xl sm:text-8xl opacity-20 select-none pointer-events-none">🤖</div>
+            <div class="absolute left-6 bottom-2 text-5xl sm:text-6xl opacity-20 select-none pointer-events-none">🪴</div>
+
+            <div class="relative z-10 text-center max-w-3xl mx-auto">
+                <div class="inline-block bg-white/20 backdrop-blur-sm border border-white/40 rounded-full px-4 py-1 text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-2">
+                    KIỂM TRA HỌC KÌ I – NĂM HỌC 2026 - 2027
+                </div>
+                <p class="text-emerald-100 font-bold text-sm sm:text-base mb-1">
+                    MÔN: TIN HỌC - KHỐI 3
+                </p>
+                <h1 class="font-title text-2xl sm:text-4xl font-black tracking-tight mb-3 drop-shadow-md leading-tight">
+                    MINI PROJECT: THIẾT BỊ AI CHĂM SÓC CÂY
+                </h1>
+                <div class="inline-flex items-center gap-2 bg-amber-400 text-amber-950 font-extrabold px-4 py-1.5 rounded-2xl shadow-sm text-sm">
+                    <i class="fa-regular fa-clock text-base"></i>
+                    <span>Thời gian làm bài: 4 tiết</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nội dung chính -->
+    <main class="max-w-5xl mx-auto px-4 space-y-6 sm:space-y-8">
+
+        <!-- PHẦN 0: BỐI CẢNH DỰ ÁN -->
+        <section id="boi-canh" class="kid-card bg-white rounded-3xl p-6 sm:p-7 shadow-md border-4 border-emerald-200">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl shrink-0 shadow-inner">
+                    🏡
+                </div>
+                <h2 class="font-title text-xl sm:text-2xl font-extrabold text-emerald-800">
+                    BỐI CẢNH DỰ ÁN
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+                <div class="lg:col-span-8 space-y-3 text-base leading-relaxed text-slate-700 font-medium">
+                    <p>
+                        Trong cuộc sống hằng ngày, các gia đình thường chăm sóc cây bằng những việc như <span class="bg-sky-100 text-sky-800 px-2 py-0.5 rounded-lg font-bold">tưới nước</span>, <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-lg font-bold">kiểm tra đất</span> và <span class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-lg font-bold">đặt cây ở nơi có đủ ánh sáng</span>. Trong đó, tưới cây là việc cần làm thường xuyên. Khi bận rộn hoặc đi vắng, người chăm cây có thể quên tưới. Đôi khi, họ cũng khó biết đất còn ẩm hay cây đã cần thêm nước.
+                    </p>
+                    <p>
+                        Ngày nay, một số thiết bị có thể dùng <span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded-lg font-extrabold">AI (Trí tuệ nhân tạo)</span> để hỗ trợ việc chăm cây, chẳng hạn như nhận biết đất khô hay ẩm, nhắc người chăm cây tưới nước hoặc tự tưới khi cây cần. Ứng dụng AI vào việc tưới cây có thể giúp gia đình chăm cây đều đặn hơn và tránh tưới khi đất vẫn còn ẩm.
+                    </p>
+                </div>
+
+                <!-- Hình minh họa trực quan -->
+                <div class="lg:col-span-4 bg-gradient-to-br from-sky-50 via-emerald-50 to-teal-50 rounded-2xl p-5 border-2 border-dashed border-emerald-300 flex flex-col items-center justify-center text-center h-full">
+                    <div class="flex items-center justify-center gap-3 text-5xl mb-3">
+                        <span class="animate-pulse">🤖</span>
+                        <span class="text-2xl text-sky-500">💧</span>
+                        <span>🪴</span>
+                    </div>
+                    <p class="text-sm font-bold text-emerald-800 leading-snug">
+                        "Bạn Robot AI thông minh sẽ giúp chúng mình kiểm tra đất và tưới nước đúng lúc cho cây xanh!"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 1: MỤC TIÊU ĐÁNH GIÁ -->
+        <section id="muc-tieu" class="kid-card bg-white rounded-3xl p-6 sm:p-7 shadow-md border-4 border-sky-200">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-11 h-11 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-black shrink-0">
+                    1
+                </div>
+                <h2 class="font-title text-xl sm:text-2xl font-extrabold text-sky-800">
+                    MỤC TIÊU ĐÁNH GIÁ
+                </h2>
+            </div>
+
+            <div class="space-y-4 text-base">
+                <div class="bg-sky-50/80 p-4 sm:p-5 rounded-2xl border-2 border-sky-100 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                    <div class="flex items-center gap-2.5 sm:w-1/4 shrink-0">
+                        <span class="text-2xl">💻</span>
+                        <h3 class="font-extrabold text-sky-900 text-lg">Về Công nghệ</h3>
+                    </div>
+                    <p class="text-slate-700 font-medium sm:w-3/4">Lựa chọn công cụ AI phù hợp.</p>
+                </div>
+
+                <div class="bg-indigo-50/80 p-4 sm:p-5 rounded-2xl border-2 border-indigo-100 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                    <div class="flex items-center gap-2.5 sm:w-1/4 shrink-0">
+                        <span class="text-2xl">🧠</span>
+                        <h3 class="font-extrabold text-indigo-900 text-lg">Về Tư duy</h3>
+                    </div>
+                    <p class="text-slate-700 font-medium sm:w-3/4">Vận dụng tư duy hệ thống để xác định vấn đề và nhu cầu hỗ trợ, tư duy thiết kế để đề xuất giải pháp AI, tư duy máy tính để mô tả các bước hoạt động của thiết bị, và tư duy phản biện và sáng tạo để so sánh, giải thích lựa chọn và đề xuất cải tiến.</p>
+                </div>
+
+                <div class="bg-teal-50/80 p-4 sm:p-5 rounded-2xl border-2 border-teal-100 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                    <div class="flex items-center gap-2.5 sm:w-1/4 shrink-0">
+                        <span class="text-2xl">🛠️</span>
+                        <h3 class="font-extrabold text-teal-900 text-lg">Về Kỹ năng</h3>
+                    </div>
+                    <p class="text-slate-700 font-medium sm:w-3/4">Đánh giá giải pháp bằng tiêu chí thiết kế.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: THỜI GIAN - NHIỆM VỤ THỰC HIỆN -->
+        <section id="hanh-trinh" class="bg-white rounded-3xl p-6 sm:p-7 shadow-md border-4 border-rose-200">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-11 h-11 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-black shrink-0">
+                    2
+                </div>
+                <div>
+                    <h2 class="font-title text-xl sm:text-2xl font-extrabold text-rose-800">
+                        THỜI GIAN - NHIỆM VỤ THỰC HIỆN
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-500 font-semibold">Các nhiệm vụ chi tiết theo từng tiết học trong dự án:</p>
+                </div>
+            </div>
+
+            <!-- Danh sách 4 tiết học chia 2x2 cân đối -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                
+                <!-- Tiết 1 -->
+                <div class="station-card rounded-2xl border-2 border-emerald-300 bg-emerald-50/40 p-4 sm:p-5 flex flex-col transition-all">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="bg-emerald-500 text-white font-extrabold px-3.5 py-1 rounded-xl text-sm shadow-sm">
+                            ⏱️ Tiết 1
+                        </span>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-emerald-100 flex-1 text-slate-700 text-sm sm:text-base">
+                        <p class="font-extrabold text-emerald-800 text-xs uppercase tracking-wider mb-2">Nhiệm vụ chi tiết:</p>
+                        <ul class="list-disc pl-5 space-y-1.5 font-medium">
+                            <li>Học sinh phát hiện công việc chăm sóc cây lặp đi lặp lại cần đến sự giúp đỡ của AI dựa trên danh sách tiêu chí gợi ý.</li>
+                            <li>Học sinh nêu được khó khăn và lý do cần AI hỗ trợ cho công việc đó.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tiết 2 -->
+                <div class="station-card rounded-2xl border-2 border-sky-300 bg-sky-50/40 p-4 sm:p-5 flex flex-col transition-all">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="bg-sky-500 text-white font-extrabold px-3.5 py-1 rounded-xl text-sm shadow-sm">
+                            ⏱️ Tiết 2
+                        </span>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-sky-100 flex-1 text-slate-700 text-sm sm:text-base">
+                        <p class="font-extrabold text-sky-800 text-xs uppercase tracking-wider mb-2">Nhiệm vụ chi tiết:</p>
+                        <ul class="list-disc pl-5 space-y-1.5 font-medium">
+                            <li>Học sinh lựa chọn công cụ hoặc giải pháp AI phù hợp nhất trong số các lựa chọn cho trước.</li>
+                            <li>Học sinh giải thích được lý do lựa chọn gắn với nhu cầu chăm sóc cây.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tiết 3 -->
+                <div class="station-card rounded-2xl border-2 border-amber-300 bg-amber-50/40 p-4 sm:p-5 flex flex-col transition-all">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="bg-amber-500 text-white font-extrabold px-3.5 py-1 rounded-xl text-sm shadow-sm">
+                            ⏱️ Tiết 3
+                        </span>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-amber-100 flex-1 text-slate-700 text-sm sm:text-base">
+                        <p class="font-extrabold text-amber-800 text-xs uppercase tracking-wider mb-2">Nhiệm vụ chi tiết:</p>
+                        <ul class="list-disc pl-5 space-y-1.5 font-medium">
+                            <li>Học sinh vẽ hoặc viết ra ý tưởng về thiết bị AI giúp giải quyết công việc chăm sóc cây.</li>
+                            <li>Học sinh mô tả rõ chức năng và cách thiết bị hoạt động để hỗ trợ tưới cây.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tiết 4 -->
+                <div class="station-card rounded-2xl border-2 border-purple-300 bg-purple-50/40 p-4 sm:p-5 flex flex-col transition-all">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="bg-purple-500 text-white font-extrabold px-3.5 py-1 rounded-xl text-sm shadow-sm">
+                            ⏱️ Tiết 4
+                        </span>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-purple-100 flex-1 text-slate-700 text-sm sm:text-base">
+                        <p class="font-extrabold text-purple-800 text-xs uppercase tracking-wider mb-2">Nhiệm vụ chi tiết:</p>
+                        <ul class="list-disc pl-5 space-y-1.5 font-medium">
+                            <li>Học sinh hoàn thiện phiếu và trình bày được ý tưởng thiết bị của mình.</li>
+                            <li>Học sinh chỉ ra được điểm khác biệt so với các thiết bị đã có sẵn và đề xuất cải tiến (nếu có).</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PHẦN 3: TIÊU CHÍ ĐÁNH GIÁ -->
+        <section id="danh-gia" class="bg-white rounded-3xl p-6 sm:p-7 shadow-md border-4 border-purple-200">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-black shrink-0">
+                        3
+                    </div>
+                    <div>
+                        <h2 class="font-title text-xl sm:text-2xl font-extrabold text-purple-800">
+                            TIÊU CHÍ ĐÁNH GIÁ
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-500 font-semibold">Bấm vào ô mức độ để đánh dấu mục tiêu em muốn đạt được!</p>
+                    </div>
+                </div>
+                <button onclick="resetRubric()" class="text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl transition">
+                    🔄 Bỏ chọn bảng
+                </button>
+            </div>
+
+            <!-- Bảng tiêu chí đánh giá gọn gàng, vừa khung màn hình máy tính -->
+            <div class="table-container overflow-x-auto rounded-2xl border-2 border-purple-200 shadow-sm">
+                <table class="w-full min-w-[760px] border-collapse text-left">
+                    <thead>
+                        <tr class="bg-purple-600 text-white font-title">
+                            <th rowspan="2" class="p-3 border border-purple-400 text-center w-12 font-extrabold">STT</th>
+                            <th rowspan="2" class="p-3 border border-purple-400 w-48 font-extrabold">Tiêu chí (MTB)</th>
+                            <th colspan="4" class="p-2 border border-purple-400 text-center font-extrabold text-base bg-purple-700">
+                                Mức độ đạt được
+                            </th>
+                        </tr>
+                        <tr class="text-center text-xs sm:text-sm font-extrabold">
+                            <th class="p-2.5 border border-purple-300 bg-rose-100 text-rose-900 w-1/5">
+                                ⭐ Mức 1<br><span class="font-semibold text-xs">(Chưa đạt)</span>
+                            </th>
+                            <th class="p-2.5 border border-purple-300 bg-amber-100 text-amber-900 w-1/5">
+                                ⭐⭐ Mức 2<br><span class="font-semibold text-xs">(Đang hình thành)</span>
+                            </th>
+                            <th class="p-2.5 border border-purple-300 bg-sky-100 text-sky-900 w-1/5">
+                                ⭐⭐⭐ Mức 3<br><span class="font-semibold text-xs">(Đạt)</span>
+                            </th>
+                            <th class="p-2.5 border border-purple-300 bg-emerald-100 text-emerald-900 w-1/5">
+                                ⭐⭐⭐⭐ Mức 4<br><span class="font-semibold text-xs">(Vượt)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm sm:text-base text-slate-700 divide-y divide-purple-200">
+                        
+                        <!-- Tiêu chí 1 -->
+                        <tr class="hover:bg-purple-50/30">
+                            <td class="p-3.5 border border-purple-200 text-center font-black text-purple-800 bg-purple-50/50">1</td>
+                            <td class="p-3.5 border border-purple-200 font-extrabold text-slate-900 bg-purple-50/50">
+                                Xác định vấn đề cần AI hỗ trợ
+                            </td>
+                            <td onclick="selectLevel(1, 1, this)" class="rubric-cell row-1 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-rose-50 align-top">
+                                Chưa xác định được công việc chăm sóc cây cần hỗ trợ, dù có gợi ý.
+                            </td>
+                            <td onclick="selectLevel(1, 2, this)" class="rubric-cell row-1 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-amber-50 align-top">
+                                Xác định được việc tưới cây nhưng chưa nêu rõ tính lặp lại hoặc khó khăn của gia đình.
+                            </td>
+                            <td onclick="selectLevel(1, 3, this)" class="rubric-cell row-1 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-sky-50 align-top">
+                                Xác định được việc tưới cây là công việc lặp lại, nêu được khó khăn và lý do cần AI hỗ trợ dựa trên tiêu chí gợi ý.
+                            </td>
+                            <td onclick="selectLevel(1, 4, this)" class="rubric-cell row-1 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-emerald-50 align-top">
+                                Đạt mức 3; đồng thời xây dựng được User Story rõ ràng, thể hiện người dùng, nhu cầu và lợi ích mong muốn.
+                            </td>
+                        </tr>
+
+                        <!-- Tiêu chí 2 -->
+                        <tr class="hover:bg-purple-50/30">
+                            <td class="p-3.5 border border-purple-200 text-center font-black text-purple-800 bg-purple-50/50">2</td>
+                            <td class="p-3.5 border border-purple-200 font-extrabold text-slate-900 bg-purple-50/50">
+                                Lựa chọn giải pháp AI phù hợp (MTB 1.2.a)
+                            </td>
+                            <td onclick="selectLevel(2, 1, this)" class="rubric-cell row-2 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-rose-50 align-top">
+                                Chưa lựa chọn được giải pháp phù hợp trong các phương án cho trước.
+                            </td>
+                            <td onclick="selectLevel(2, 2, this)" class="rubric-cell row-2 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-amber-50 align-top">
+                                Lựa chọn được giải pháp nhưng chưa giải thích được lý do phù hợp.
+                            </td>
+                            <td onclick="selectLevel(2, 3, this)" class="rubric-cell row-2 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-sky-50 align-top">
+                                Lựa chọn được giải pháp AI phù hợp và giải thích được ít nhất một lý do gắn với nhu cầu chăm sóc cây.
+                            </td>
+                            <td onclick="selectLevel(2, 4, this)" class="rubric-cell row-2 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-emerald-50 align-top">
+                                Đạt mức 3; đồng thời so sánh được ít nhất 2 giải pháp theo 2 tiêu chí và giải thích được ưu điểm của giải pháp đã chọn.
+                            </td>
+                        </tr>
+
+                        <!-- Tiêu chí 3 -->
+                        <tr class="hover:bg-purple-50/30">
+                            <td class="p-3.5 border border-purple-200 text-center font-black text-purple-800 bg-purple-50/50">3</td>
+                            <td class="p-3.5 border border-purple-200 font-extrabold text-slate-900 bg-purple-50/50">
+                                Thiết kế ý tưởng (MTB 1.3.b)
+                            </td>
+                            <td onclick="selectLevel(3, 1, this)" class="rubric-cell row-3 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-rose-50 align-top">
+                                Chưa vẽ hoặc viết được ý tưởng thiết bị hỗ trợ chăm sóc cây.
+                            </td>
+                            <td onclick="selectLevel(3, 2, this)" class="rubric-cell row-3 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-amber-50 align-top">
+                                Có bản phác thảo hoặc mô tả nhưng chức năng chưa rõ hoặc chưa giải quyết đúng vấn đề.
+                            </td>
+                            <td onclick="selectLevel(3, 3, this)" class="rubric-cell row-3 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-sky-50 align-top">
+                                Vẽ hoặc viết được ý tưởng chậu cây AI, thể hiện rõ chức năng và cách thiết bị hỗ trợ giải quyết vấn đề tưới cây.
+                            </td>
+                            <td onclick="selectLevel(3, 4, this)" class="rubric-cell row-3 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-emerald-50 align-top">
+                                Đạt mức 3; đồng thời mô tả được Input – Process – Output và đề xuất thêm cách xử lý một tình huống như đất còn ẩm hoặc bình hết nước.
+                            </td>
+                        </tr>
+
+                        <!-- Tiêu chí 4 -->
+                        <tr class="hover:bg-purple-50/30">
+                            <td class="p-3.5 border border-purple-200 text-center font-black text-purple-800 bg-purple-50/50">4</td>
+                            <td class="p-3.5 border border-purple-200 font-extrabold text-slate-900 bg-purple-50/50">
+                                Trình bày và chỉ ra điểm khác biệt (MTB 1.3.c)
+                            </td>
+                            <td onclick="selectLevel(4, 1, this)" class="rubric-cell row-4 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-rose-50 align-top">
+                                Phiếu chưa thể hiện được ý tưởng thiết bị hoặc chưa nêu được điểm khác biệt với thiết bị có sẵn.
+                            </td>
+                            <td onclick="selectLevel(4, 2, this)" class="rubric-cell row-4 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-amber-50 align-top">
+                                Phiếu mô tả được ý tưởng và chức năng nhưng chưa chỉ ra rõ điểm khác biệt với thiết bị có sẵn.
+                            </td>
+                            <td onclick="selectLevel(4, 3, this)" class="rubric-cell row-4 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-sky-50 align-top">
+                                Hoàn thành phiếu, trình bày rõ ý tưởng, chức năng và ít nhất một điểm khác biệt so với thiết bị có sẵn.
+                            </td>
+                            <td onclick="selectLevel(4, 4, this)" class="rubric-cell row-4 p-3.5 border border-purple-200 cursor-pointer transition hover:bg-emerald-50 align-top">
+                                Đạt mức 3; đồng thời giải thích được lợi ích của điểm khác biệt và đề xuất ít nhất một cải tiến hợp lý.
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Chân trang -->
+    <footer class="max-w-5xl mx-auto px-4 mt-10 text-center text-slate-500 text-sm font-semibold">
+        <p>🌱 Chúc các em học sinh Khối 3 hoàn thành thật tốt dự án "Thiết bị AI chăm sóc cây"! 🤖</p>
+    </footer>
+
+    <!-- Hộp thông báo chúc mừng (thay thế alert) -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-emerald-600 text-white px-5 py-3.5 rounded-2xl shadow-xl border-2 border-white flex items-center gap-3 max-w-sm">
+        <span class="text-2xl">🎉</span>
+        <p id="toast-text" class="font-bold text-sm">Tuyệt vời! Em đã hoàn thành tất cả 4 tiết học!</p>
+    </div>
+
+    <script>
+        // Lưu trữ điểm tự đánh giá của 4 tiêu chí
+        const scores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+        // Hàm chọn mức độ trong bảng tiêu chí đánh giá
+        function selectLevel(row, level, cellElement) {
+            // Xóa highlight cũ ở hàng hiện tại
+            const rowCells = document.querySelectorAll(`.row-${row}`);
+            rowCells.forEach(cell => {
+                cell.classList.remove(
+                    'bg-rose-200', 'bg-amber-200', 'bg-sky-200', 'bg-emerald-200',
+                    'font-bold', 'text-slate-950', 'ring-2', 'ring-inset', 'ring-purple-600'
+                );
+            });
+
+            // Màu highlight tương ứng từng mức
+            const bgColors = {
+                1: 'bg-rose-200',
+                2: 'bg-amber-200',
+                3: 'bg-sky-200',
+                4: 'bg-emerald-200'
+            };
+
+            cellElement.classList.add(bgColors[level], 'font-bold', 'text-slate-950', 'ring-2', 'ring-inset', 'ring-purple-600');
+            
+            // Cập nhật điểm
+            scores[row] = level;
+        }
+
+        // Hàm đặt lại bảng đánh giá
+        function resetRubric() {
+            for (let i = 1; i <= 4; i++) {
+                scores[i] = 0;
+            }
+            document.querySelectorAll('.rubric-cell').forEach(cell => {
+                cell.classList.remove(
+                    'bg-rose-200', 'bg-amber-200', 'bg-sky-200', 'bg-emerald-200',
+                    'font-bold', 'text-slate-950', 'ring-2', 'ring-inset', 'ring-purple-600'
+                );
+            });
+        }
+    </script>
+</body>
+</html>
